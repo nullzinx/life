@@ -1,0 +1,10 @@
+__pycache__/
+bin/
+include/
+lib64/
+lib/
+.env
+var/setup-instance/database.db
+pyvenv.cfg
+lib64
+instance/database.db

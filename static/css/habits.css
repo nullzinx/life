@@ -1,0 +1,280 @@
+/* HABITS PAGE */
+
+.habits-container {
+    max-width: 900px;
+}
+
+/* HEADER */
+
+.habits-header {
+    max-width: 650px;
+    margin-bottom: 65px;
+}
+
+.habits-header h1 {
+    font-size: clamp(38px, 6vw, 58px);
+    line-height: 1.1;
+    letter-spacing: -2.5px;
+    font-weight: 800;
+}
+
+.habits-header h1 span {
+    color: var(--primary);
+}
+
+.habits-header p {
+    margin-top: 18px;
+    color: var(--text-muted);
+    font-size: 14px;
+}
+
+/* SECTIONS */
+
+.create-section,
+.habits-section {
+    margin-bottom: 65px;
+}
+
+.section-heading {
+    margin-bottom: 22px;
+}
+
+.section-heading h2 {
+    font-size: 22px;
+    letter-spacing: -0.8px;
+}
+
+.section-heading > span {
+    color: var(--text-muted);
+    font-size: 10px;
+    letter-spacing: 1px;
+}
+
+/* CREATE FORM */
+
+.create-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding: 28px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 9px;
+}
+
+.form-label {
+    color: var(--text-muted);
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.form-input,
+.form-select {
+    width: 100%;
+    padding: 13px 15px;
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    color: var(--text);
+    font-family: inherit;
+    font-size: 13px;
+    outline: none;
+    transition: var(--transition);
+}
+
+.form-input::placeholder {
+    color: #756d80;
+}
+
+.form-input:focus,
+.form-select:focus {
+    border-color: var(--primary);
+}
+
+.form-select {
+    cursor: pointer;
+}
+
+.form-select option {
+    background: var(--surface);
+    color: var(--text);
+}
+
+.create-button {
+    align-self: flex-start;
+    margin-top: 5px;
+}
+
+/* HABIT CARDS */
+
+.habits-list {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+.habit-card {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    padding: 22px 25px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    transition: var(--transition);
+}
+
+.habit-card:hover {
+    background: var(--surface-hover);
+    border-color: var(--primary-dark);
+    transform: translateY(-2px);
+}
+
+.habit-main {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    flex: 1;
+    min-width: 0;
+}
+
+.habit-indicator {
+    width: 10px;
+    height: 10px;
+    flex-shrink: 0;
+    border-radius: 50%;
+}
+
+.habit-indicator.good {
+    background: #86c99a;
+    box-shadow: 0 0 10px #86c99a55;
+}
+
+.habit-indicator.bad {
+    background: #e47c87;
+    box-shadow: 0 0 10px #e47c8755;
+}
+
+.habit-info {
+    min-width: 0;
+}
+
+.habit-info h3 {
+    font-size: 15px;
+    font-weight: 600;
+    overflow-wrap: anywhere;
+}
+
+.habit-type {
+    display: block;
+    margin-top: 4px;
+    color: var(--text-muted);
+    font-size: 11px;
+}
+
+/* PROGRESS */
+
+.habit-progress {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-width: 65px;
+}
+
+.habit-progress strong {
+    color: var(--primary);
+    font-size: 25px;
+    line-height: 1.2;
+    font-weight: 800;
+}
+
+.habit-progress span {
+    color: var(--text-muted);
+    font-size: 10px;
+}
+
+/* RESET BUTTON */
+
+.reset-button {
+    padding: 10px 15px;
+    background: transparent;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    color: var(--text-muted);
+    font-family: inherit;
+    font-size: 11px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.reset-button:hover {
+    color: #f0808a;
+    border-color: #e47c87;
+    background: #e47c8710;
+}
+
+/* EMPTY STATE */
+
+.empty-state {
+    padding: 55px 20px;
+    text-align: center;
+    background: var(--surface);
+    border: 1px dashed var(--border);
+    border-radius: var(--radius);
+}
+
+.empty-icon {
+    display: block;
+    margin-bottom: 15px;
+    color: var(--primary);
+    font-size: 30px;
+}
+
+.empty-state h3 {
+    font-size: 17px;
+}
+
+.empty-state p {
+    margin-top: 8px;
+    color: var(--text-muted);
+    font-size: 12px;
+}
+
+/* RESPONSIVE */
+
+@media (max-width: 600px) {
+
+    .habits-header {
+        margin-bottom: 45px;
+    }
+
+    .create-form {
+        padding: 20px;
+    }
+
+    .habit-card {
+        flex-wrap: wrap;
+        padding: 18px;
+        gap: 15px;
+    }
+
+    .habit-main {
+        flex-basis: 100%;
+    }
+
+    .habit-progress {
+        align-items: flex-start;
+    }
+
+    .reset-button {
+        padding: 9px 12px;
+    }
+}

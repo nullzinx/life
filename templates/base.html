@@ -1,0 +1,41 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="theme-color" content="#101114">
+
+    <title>{% block title %}Private Diary{% endblock %}</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/diary.css') }}">
+</head>
+
+<body>
+
+    <header class="navbar">
+        <a href="{{ url_for('diary.notes') }}" class="logo">
+            <span class="logo-icon">◈</span>
+            private<span>diary</span>
+        </a>
+
+        <nav>
+            <a href="{{ url_for('diary.notes') }}">start</a>
+            <a href="{{ url_for('diary.writeing_note') }}">new note</a>
+        </nav>
+    </header>
+
+    <main class="container">
+        {% block content %}{% endblock %}
+    </main>
+
+    <footer>
+        <span>PRIVATE DIARY</span>
+        <span>Privacy by design.</span>
+    </footer>
+
+</body>
+</html>
+

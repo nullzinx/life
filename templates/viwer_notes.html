@@ -1,0 +1,50 @@
+
+{% extends "base.html" %}
+
+{% block title %} writing new note| Private Diary{% endblock %}
+
+{% block content %}
+
+<section class="notes-header">
+
+    <span class="eyebrow">YOUR PERSONAL ARCHIVE</span>
+
+    <h1>your <span>notes</span></h1>
+
+    <a href="{{ url_for('diary.writeing_note') }}"
+       class="button primary">
+        + New note
+    </a>
+
+</section>
+
+<section class="notes-grid">
+
+    {% for note in notes %}
+
+    <article class="note-card">
+
+        <div class="note-top">
+            <span class="note-icon">◈</span>
+            <span class="note-date">{{ note.anoted_at }}</span>
+        </div>
+
+        <h2>{{ note.anoted_encrypt_title }}</h2>
+
+        <p>{{ note.anoted_encrypt_content }}</p>
+
+    </article>
+
+    {% else %}
+
+    <div class="empty-state">
+        <span>◇</span>
+        <h2>You haven’t written anything yet</h2>
+    </div>
+
+    {% endfor %}
+
+</section>
+
+{% endblock %}
+

@@ -1,0 +1,70 @@
+
+{% extends "base.html" %}
+
+{% block title %}Diary{% endblock %}
+
+{% block content %}
+
+<section class="hero">
+    <h1> <br>Encrypted diary <span>Write down your unfiltered thoughts in complete privacy </span></h1>
+    <p>
+We offer a secure digital diary, protected by military-grade encryption and fully offline 
+    </p>
+
+    <div class="hero-actions">
+
+        <a href="{{ url_for('diary.writeing_note') }}"
+           class="button primary">
+            + new register
+        </a>
+
+        <form action="{{ url_for('diary.viewnotes') }}"
+              method="POST"
+              class="notes-access">
+
+            <input
+                type="password"
+                name="masterkey"
+                placeholder="Diary key "
+                required
+            >
+
+            <button type="submit" class="button secondary">
+        Read notes 
+            </button>
+
+        </form>
+
+    </div>
+
+</section>
+
+<section class="info-grid">
+
+    <article class="info-card">
+        <span class="card-icon">◈</span>
+        <h3>How to use it? </h3>
+	
+	<p> When creating a new note, we recommend choosing a password or key that is at least 30 characters long. This key will be used to protect your note and keep it secure. Do not share it with anyone, as it should remain private.
+	</p>
+    </article>
+
+    <article class="info-card">
+        <span class="card-icon">⌘</span>
+        <h3>Buy me a coffee </h3>
+        <p>I have spent some of my free time developing this tool; if you would like to make a voluntary donation, here is my USDT wallet
+	<code>TRqc4Hsh2V6s8dtBw4PukFgeSafFZryV2
+	</code>
+	</p>
+    </article>
+
+    <article class="info-card">
+        <span class="card-icon">◇</span>
+        <h3>Open Source & FOSS</h3>
+        <p>This diary is part of Life's Tools, an open-source project dedicated to creating tools that promote productivity, mental health, and digital well-being. Licensed under GNU GPL-3.0, this project values transparency, user freedom, and privacy. The diary works entirely offline, meaning your data stays on your device and no internet connection is required to use it.</p>
+    </article>
+
+</section>
+
+{% endblock %}
+

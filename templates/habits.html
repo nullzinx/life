@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Life | Habits</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/lp.css') }}">
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/habits.css') }}">
+</head>
+
+<body>
+
+    <nav class="navbar">
+        <a href="/" class="logo">
+            <span class="logo-icon">✦</span>Life<span>.</span>
+        </a>
+
+        <nav>
+            <a href="/">Home</a>
+            <a href="/diary/">Diary</a>
+            <a href="{{ url_for('habits.index') }}">Habits</a>
+        </nav>
+    </nav>
+
+    <main class="container habits-container">
+
+        <header class="habits-header">
+            <span class="eyebrow">PERSONAL DEVELOPMENT</span>
+            <h1>Build better <span>habits.</span></h1>
+            <p>
+                Small actions, repeated every day, create meaningful changes.
+                Keep track of your progress.
+            </p>
+        </header>
+
+        <section class="create-section">
+
+            <div class="section-heading">
+                <h2>Create a habit</h2>
+                <span>NEW HABIT</span>
+            </div>
+
+            <form action="{{ url_for('habits.add') }}"
+                  method="POST"
+                  class="create-form">
+
+                {{ form.hidden_tag() }}
+
+                <div class="form-group">
+                    {{ form.name.label(class="form-label") }}
+                    {{ form.name(
+                        class="form-input",
+                        placeholder="e.g. Read 20 pages daily"
+                    ) }}
+                </div>
+
+                <div class="form-group">
+			<p> is a bad habit? </p>
+                    {{ form.virtue.label(class="form-label") }}
+                    {{ form.virtue(class="form-select") }}
+                </div>
+
+                <button type="submit" class="button primary create-button">
+                    + Create habit
+                </button>
+
+            </form>
+
+        </section>
+
+        <section class="habits-section">
+
+            <div class="section-heading">
+                <h2>Your habits</h2>
+                <span>{{ habits|length }} REGISTERED</span>
+            </div>
+
+            <div class="habits-list">
+
+                {% for habit in habits %}
+
+                    <article class="habit-card">
+
+                        <div class="habit-main">
+
+                            <div class="habit-indicator
+                                {% if habit.virtue %}bad{% else %}good{% endif %}">
+                            </div>
+
+                            <div class="habit-info">
+
+                                <h3>{{ habit.name }}</h3>
+
+                                <span class="habit-type">
+                                    {% if habit.virtue %}
+                                        Bad habit
+                                    {% else %}
+                                        Good habit
+                                    {% endif %}
+                                </span>
+
+                            </div>
+
+                        </div>
+
+                        <div class="habit-progress">
+                            <strong>{{ habit.days }}</strong>
+                            <span>days</span>
+                        </div>
+
+                        <form action="{{ url_for(
+                            'habits.reset',
+                            habit_id=habit.id
+                        ) }}" method="POST">
+
+                            {{ form.csrf_token }}
+
+                            <button type="submit"
+                                    class="reset-button"
+                                    onclick="return confirm('Reset this habit streak?')">
+                                Reset streak
+                            </button>
+
+                        </form>
+
+                    </article>
+
+                {% else %}
+
+                    <div class="empty-state">
+                        <span class="empty-icon">✦</span>
+                        <h3>No habits yet</h3>
+                        <p>Create your first habit and start building consistency.</p>
+                    </div>
+	
+                {% endfor %}
+
+            </div>
+
+        </section>
+
+    </main>
+
+    <footer>
+        <span>© 2026 LIFE</span>
+        <span>Build your own path.</span>
+    </footer>
+
+</body>
+</html>

@@ -1,0 +1,63 @@
+
+{% extends "base.html" %}
+
+{% block title %}New note | Private Diary{% endblock %}
+
+{% block content %}
+
+<section class="form-container">
+    <span class="eyebrow">NEW ENTRY / ENCRYPTED</span>
+
+    <h1>new <span>note</span></h1>
+
+    <p class="form-description">
+
+    </p>
+
+    <form method="POST" action="{{ url_for('diary.writeing_note') }}">
+
+        <div class="form-group">
+            <label for="title">title</label>
+            <input
+                type="text"
+                id="title"
+                name="title"
+                placeholder="Note title"
+                required
+            >
+        </div>
+
+        <div class="form-group">
+            <label for="content">content</label>
+            <textarea
+                id="content"
+                name="content"
+                placeholder="What are you thinking? "
+                rows="10"
+                required
+            ></textarea>
+        </div>
+
+        <div class="form-group">
+            <label for="masterkey">Masterkey</label>
+            <input
+                type="password"
+                id="masterkey"
+                name="masterkey"
+                placeholder="Set a password to access your note"
+                required
+            >
+            <span class="input-hint">
+        Use the same key to retrieve the thought 
+            </span>
+        </div>
+
+        <button type="submit" class="button primary submit-button">
+            Encrypting is saving 
+        </button>
+
+    </form>
+</section>
+
+{% endblock %}
+

@@ -1,0 +1,154 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wishlist | Life</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/wishlist.css') }}">
+</head>
+<body>
+
+    <header class="navbar">
+        <a href="/" class="logo">
+            <span class="logo-icon">✦</span>
+            life<span>.</span>
+        </a>
+
+        <nav>
+            <a href="/">Home</a>
+            <a href="/wishlist/" class="active">Wishlist</a>
+        </nav>
+    </header>
+
+    <main class="container">
+
+        <section class="wishlist-header">
+            <div>
+                <span class="eyebrow">YOUR GOALS AND ASPIRATIONS</span>
+                <h1>My <span>Wishlist.</span></h1>
+                <p>
+                    A space to keep track of everything you want to achieve,
+                    experience, or accomplish.
+                </p>
+            </div>
+
+            <a href="#create-wish" class="button primary">
+                + New Wish
+            </a>
+        </section>
+
+        <section class="wishlist-content">
+
+            <div class="section-heading">
+                <div>
+                    <h2>Your Wishes</h2>
+                    <span>{{ wishs|length }} wishes registered</span>
+                </div>
+            </div>
+
+            <div class="wishlist-grid">
+
+                {% for wish in wishs %}
+                    <article class="wish-card">
+
+                        <div class="wish-top">
+                            <span class="wish-icon">✧</span>
+                            <span class="wish-id">#{{ "%03d"|format(wish.id) }}</span>
+                        </div>
+
+                        <h3>{{ wish.title }}</h3>
+
+                        <p class="wish-description">
+                            {{ wish.description or "No description provided." }}
+                        </p>
+
+                        {% if wish.action_plain %}
+                            <div class="wish-action">
+                                <span>✦</span>
+                                <p>{{ wish.action_plain }}</p>
+                            </div>
+                        {% endif %}
+
+                    </article>
+
+                {% else %}
+                    <div class="empty-state">
+                        <span>✧</span>
+                        <h2>Your wishlist is empty.</h2>
+                        <p>
+                            Add your first wish and start organizing
+                            everything you want to accomplish.
+                        </p>
+                        <a href="#create-wish" class="button primary">
+                            Create Your First Wish
+                        </a>
+                    </div>
+                {% endfor %}
+
+            </div>
+        </section>
+
+        <section class="create-section" id="create-wish">
+
+            <div class="create-header">
+                <span class="eyebrow">NEW ENTRY</span>
+                <h2>Add a <span>Wish.</span></h2>
+                <p>Turn an aspiration into something you can work towards.</p>
+            </div>
+
+            <form action="{{ url_for('wish_list.add') }}" method="POST">
+
+                {{ form.hidden_tag() }}
+
+                <div class="form-group">
+                    {{ form.title.label }}
+                    {{ form.title(placeholder="e.g. Learn a new language") }}
+
+                    {% for error in form.title.errors %}
+                        <span class="field-error">{{ error }}</span>
+                    {% endfor %}
+                </div>
+
+                <div class="form-group">
+                    {{ form.description.label }}
+                    {{ form.description(
+                        placeholder="Tell us more about this wish..."
+                    ) }}
+
+                    {% for error in form.description.errors %}
+                        <span class="field-error">{{ error }}</span>
+                    {% endfor %}
+                </div>
+
+                <div class="form-group">
+                    {{ form.action_plain.label }}
+                    {{ form.action_plain(
+                        placeholder="e.g. Study for 20 minutes every day..."
+                    ) }}
+                    <span class="input-hint">
+                        What's the first step towards making it happen?
+                    </span>
+
+                    {% for error in form.action_plain.errors %}
+                        <span class="field-error">{{ error }}</span>
+                    {% endfor %}
+                </div>
+
+                <button type="submit" class="button primary submit-button">
+                    Add to Wishlist →
+                </button>
+
+            </form>
+        </section>
+
+    </main>
+
+    <footer>
+        <span>LIFE. — PERSONAL ORGANIZATION</span>
+        <span>One step at a time.</span>
+    </footer>
+
+</body>
+</html>
+
