@@ -1,4 +1,3 @@
-
 from setup import db
 from datetime import datetime, timezone
 
